@@ -25,3 +25,5 @@ tar xvfz chronograf-1.10.0_linux_arm64.tar.gz
 ```
 
 When building Dashboard check [airnow](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf) for range mapping between ppm and AQI
+
+![](./Screenshot.png)
