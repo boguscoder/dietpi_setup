@@ -1,0 +1,624 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.0",
+		"sources": {
+			"1": {
+				"name": "Influx",
+				"link": "/chronograf/v1/sources/1"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "1",
+		"cells": [
+			{
+				"i": "35dc5bcd-a011-45a5-99e5-f1da5e1bd3ba",
+				"x": 2,
+				"y": 0,
+				"w": 10,
+				"h": 12,
+				"name": "AQI Graph",
+				"queries": [
+					{
+						"query": "SELECT mean(\"pm1\") AS \"pm1\", mean(\"pm10\") AS \"pm10\", mean(\"pm2.5\") AS \"pm2.5\" FROM \"aqi_real\".\"autogen\".\"aqi\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY time(:interval:) FILL(-1)\n",
+						"queryConfig": {
+							"database": "aqi_real",
+							"measurement": "aqi",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "pm1",
+									"args": [
+										{
+											"value": "pm1",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "pm10",
+									"args": [
+										{
+											"value": "pm10",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "pm2.5",
+									"args": [
+										{
+											"value": "pm2.5",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"fill": "-1",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"100"
+						],
+						"label": "Particulate Matter (μg/m3)",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "2ec7d96f-cbc3-4ead-a395-4be99a56b127",
+						"type": "scale",
+						"hex": "#FDC44F",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "4f8b2bd5-24be-4443-8cd2-96917a0fe326",
+						"type": "scale",
+						"hex": "#007C76",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "e26c483a-36ae-4259-8e7f-5bdb86e43320",
+						"type": "scale",
+						"hex": "#8983FF",
+						"name": "Cthulhu",
+						"value": "0"
+					}
+				],
+				"legend": {
+					"type": "static",
+					"orientation": "bottom"
+				},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/35dc5bcd-a011-45a5-99e5-f1da5e1bd3ba"
+				}
+			},
+			{
+				"i": "d4c3fd3c-9b9e-4525-9bfd-918fd241a602",
+				"x": 0,
+				"y": 0,
+				"w": 2,
+				"h": 4,
+				"name": "pm1",
+				"queries": [
+					{
+						"query": "SELECT LAST(\"pm1\") FROM \"aqi_real\".\"autogen\".\"aqi\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: ",
+						"queryConfig": {
+							"database": "aqi_real",
+							"measurement": "aqi",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "pm1",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"100"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#545667",
+						"name": "graphite",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm1",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm10",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm2.5",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/d4c3fd3c-9b9e-4525-9bfd-918fd241a602"
+				}
+			},
+			{
+				"i": "e989cfb7-ee80-43db-a756-90fac06e3bda",
+				"x": 0,
+				"y": 4,
+				"w": 2,
+				"h": 4,
+				"name": "pm2.5",
+				"queries": [
+					{
+						"query": "SELECT LAST(\"pm2.5\") FROM \"aqi_real\".\"autogen\".\"aqi\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: ",
+						"queryConfig": {
+							"database": "aqi_real",
+							"measurement": "aqi",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "pm2.5",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"100"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "gauge",
+				"colors": [
+					{
+						"id": "0",
+						"type": "min",
+						"hex": "#4ED8A0",
+						"name": "rainforest",
+						"value": "0"
+					},
+					{
+						"id": "cd1b2e9c-f0a6-4b66-b0ee-4102728daf1e",
+						"type": "threshold",
+						"hex": "#FFD255",
+						"name": "thunder",
+						"value": "12"
+					},
+					{
+						"id": "6cc8c384-99fe-42d2-aa16-1fc94d7f6782",
+						"type": "threshold",
+						"hex": "#F48D38",
+						"name": "tiger",
+						"value": "35"
+					},
+					{
+						"id": "33f11081-b795-4667-a192-8ce0da94b5ce",
+						"type": "threshold",
+						"hex": "#DC4E58",
+						"name": "fire",
+						"value": "55"
+					},
+					{
+						"id": "1",
+						"type": "max",
+						"hex": "#9394FF",
+						"name": "comet",
+						"value": "150"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm1",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm10",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm2.5",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/e989cfb7-ee80-43db-a756-90fac06e3bda"
+				}
+			},
+			{
+				"i": "cb9389cb-e697-4b83-94b0-e9c09da2bb9f",
+				"x": 0,
+				"y": 8,
+				"w": 2,
+				"h": 4,
+				"name": "pm10",
+				"queries": [
+					{
+						"query": "SELECT LAST(\"pm10\") FROM \"aqi_real\".\"autogen\".\"aqi\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: ",
+						"queryConfig": {
+							"database": "aqi_real",
+							"measurement": "aqi",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "last",
+									"type": "func",
+									"alias": "",
+									"args": [
+										{
+											"value": "pm10",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "/chronograf/v1/sources/1",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"100"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#4ED8A0",
+						"name": "rainforest",
+						"value": "-1000000000000000000"
+					},
+					{
+						"id": "2850f2d2-3037-4ec2-8e23-8dfbfcb77c9a",
+						"type": "text",
+						"hex": "#FFB94A",
+						"name": "pineapple",
+						"value": "54"
+					},
+					{
+						"id": "c542a6f5-6fa8-461e-b1c6-6324fccf2822",
+						"type": "text",
+						"hex": "#F48D38",
+						"name": "tiger",
+						"value": "154"
+					},
+					{
+						"id": "cdcd065d-0573-4005-957b-87c1aa532a7a",
+						"type": "text",
+						"hex": "#DC4E58",
+						"name": "fire",
+						"value": "254"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm1",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm10",
+						"displayName": "",
+						"visible": true
+					},
+					{
+						"internalName": "aqi.mean_pm2.5",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/1/cells/cb9389cb-e697-4b83-94b0-e9c09da2bb9f"
+				}
+			}
+		],
+		"templates": [],
+		"name": "Home AQI",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/1",
+			"cells": "/chronograf/v1/dashboards/1/cells",
+			"templates": "/chronograf/v1/dashboards/1/templates"
+		}
+	}
+}
