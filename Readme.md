@@ -5,7 +5,7 @@ apt install python3
 apt install python3-pip
 apt install mosquitto mosquitto-clients
 ```
-Now you can start both `infludb` and `mqtt` services:
+Now you can start both `influxdb` and `mqtt` services:
 ```
 sudo systemctl enable mosquitto.service
 sudo systemctl enable influxdb.service
@@ -36,7 +36,3 @@ tar xvfz chronograf-1.10.0_linux_arm64.tar.gz
 ```
 
 Launch `chronograf` and import `Home AQI.json` dashboard or check [airnow](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf) for range mapping between ppm and AQI and create new one (`queries.sql` may be handy still)
-
----
-
-WIP: follow Home Assistant Core [installation](https://www.home-assistant.io/installation/raspberrypi/#install-home-assistant-core)
