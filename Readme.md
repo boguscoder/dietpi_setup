@@ -22,15 +22,17 @@ pip3 install RPi.GPIO
 pip3 install influxdb
 ```
 
+Next, to collect data and publish it to influxdb you can run `python3 real_aqi.py` or copy `aqi.service` to `/etc/systemd/system` and enable it via 
+```
+sudo systemctl enable aqi.service
+```
 
-Next, you can run (manually or via cron) `real_aqi.py` to collect data and publish it to influxdb
-
----
-
-For data visualization pick some handy folder:
+For data visualization pick some handy folder and
 ```
 wget https://dl.influxdata.com/chronograf/releases/chronograf-1.10.0_linux_arm64.tar.gz
 tar xvfz chronograf-1.10.0_linux_arm64.tar.gz
 ```
 
 Launch `chronograf` and import `Home AQI.json` dashboard or check [airnow](https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf) for range mapping between ppm and AQI and create new one (`queries.sql` may be handy still)
+
+You can install chronograf as a service via `systemctl` too by copying `chronograf.service` to `/etc/systemd/system` and adjusting as needed

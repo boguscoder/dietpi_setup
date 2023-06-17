@@ -1,0 +1,12 @@
+[Unit]
+Description=AQI Monitoring Service
+
+[Service]
+User=root
+WorkingDirectory=~
+ExecStart=python3 scripts/real_aqi.py
+Restart=always
+ExecStartPost=/bin/sleep 10
+
+[Install]
+WantedBy=multi-user.target
