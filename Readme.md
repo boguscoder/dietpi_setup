@@ -3,11 +3,9 @@ Start with apt deps:
 apt install influxdb
 apt install python3
 apt install python3-pip
-apt install mosquitto mosquitto-clients
 ```
-Now you can start both `influxdb` and `mqtt` services:
+Now you can start `influxdb` service:
 ```
-sudo systemctl enable mosquitto.service
 sudo systemctl enable influxdb.service
 ```
 
@@ -21,11 +19,11 @@ And then python deps:
 ```
 pip3 install pms5003
 pip3 install RPi.GPIO
-pip3 install paho-mqtt
+pip3 install influxdb
 ```
 
 
-Next, you can run (manually or via cron) `real_aqi.py` to collect data and publish it to mqtt broker
+Next, you can run (manually or via cron) `real_aqi.py` to collect data and publish it to influxdb
 
 ---
 
