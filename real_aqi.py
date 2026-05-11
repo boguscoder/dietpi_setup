@@ -2,24 +2,8 @@ from influxdb import InfluxDBClient
 import time
 import random
 from pms5003 import PMS5003
-#from paho.mqtt import client as mqtt_client
 
 counter = 0
-
-def connect_mqtt():
-    return None
-    # client_id = f'python-mqtt-{random.randint(0, 1000)}'
-    
-    # def cb(client, userdata, flags, rc):
-    #     if rc == 0:
-    #         print("Connected to MQTT Broker!")
-    #     else:
-    #         print("Failed to connect, return code %d\n", rc)
-
-    # client = mqtt_client.Client(client_id)
-    # client.on_connect = cb
-    # client.connect("localhost", 1883)
-    # return client
 
 def connect_influxdb():
   client = InfluxDBClient(host="localhost", port=8086)
@@ -38,9 +22,9 @@ def connect_pms5003():
 
 
 def init():
-  return (connect_influxdb(), connect_mqtt(), connect_pms5003())
+  return (connect_influxdb(), connect_pms5003())
 
-def tick(influxdb, mqtt, pms5003):
+def tick(influxdb, pms5003):
   global counter
   try:
     data = pms5003.read()
@@ -55,11 +39,6 @@ def tick(influxdb, mqtt, pms5003):
       }
     ]
     influxdb.write_points(points)
-    
-    if mqtt and data.pm_ug_per_m3(2.5) >= 10:
-      mqtt.publish("/home/pm", "ON")
-    elif mqtt and data.pm_ug_per_m3(2.5) <= 5:
-      mqtt.publish("/home/pm", "OFF")
     
     if counter > 60:
       counter = 0
@@ -79,5 +58,5 @@ def tick(influxdb, mqtt, pms5003):
     influxdb.write_points(error)
 
 if __name__ == '__main__':
-  (influxdb, mqtt, pms5003) = init()
-  while True: tick(influxdb, mqtt, pms5003)
+  (influxdb, pms5003) = init()
+  while True: tick(influxdb, pms5003)
